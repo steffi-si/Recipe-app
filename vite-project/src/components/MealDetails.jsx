@@ -32,8 +32,10 @@ function MealDetails() {
 
     return (
         <div className='recipe-detail'>
-            <h1>{meal.strMeal}</h1>
-            <img src={meal.strMealThumb} alt={meal.strMeal} />
+            <div className='recipe-card'>
+                <h1>{meal.strMeal}</h1>
+                <img src={meal.strMealThumb} alt={meal.strMeal} />
+            </div>
             <h2>Ingredients</h2>
             <ul>
                 {ingredients.map((ingredient, index) => (

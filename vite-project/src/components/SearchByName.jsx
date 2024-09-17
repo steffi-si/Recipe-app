@@ -18,14 +18,14 @@ function SearchByName() {
 
     return(
         <div>
-            <form onSubmit={handleSearch}>
+            <form className='search-form' onSubmit={handleSearch}>
                 <input 
                     type="text" 
                     value={query} 
                     onChange={(e) => setQuery(e.target.value)} 
                     placeholder="Search for a meal..." 
                 />
-                <button type="submit">Search</button>
+                <button className='search-button' type="submit">Search</button>
             </form>
             <div>
                 {meals.length > 0 ? (
