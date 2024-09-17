@@ -30,10 +30,12 @@ function SearchByName() {
             <div>
                 {meals.length > 0 ? (
                     meals.map(meal => (
-                        <div key={meal.idMeal}>
-                            <h3>{meal.strMeal}</h3>
-                            <img src={meal.strMealThumb} alt={meal.strMeal} />
-                            <Link to={`/meal/${meal.idMeal}`}>Details</Link>
+                        <div className='recipe-detail' key={meal.idMeal}>
+                            <div className='recipe-card'>
+                                <h3>{meal.strMeal}</h3>
+                                <img src={meal.strMealThumb} alt={meal.strMeal} />
+                                <Link to={`/meal/${meal.idMeal}`}>Details</Link>
+                            </div>
                         </div>
                     ))
                 ) : (
