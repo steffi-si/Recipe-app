@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { fetchRecipeDetails } from "../API.js";
+import { fetchAllRecipes } from "../API.js";
 
 function RecipeDetail() {
     const { id } = useParams();
@@ -8,7 +8,7 @@ function RecipeDetail() {
 
     const getRecipeDetails = async () => {
         try{
-            const fetchedRecipe = await fetchRecipeDetails(id);
+            const fetchedRecipe = await fetchAllRecipes(id);
             console.log(fetchedRecipe)
             if (fetchedRecipe && fetchedRecipe.length > 0) {
                 setRecipe(fetchedRecipe[0])

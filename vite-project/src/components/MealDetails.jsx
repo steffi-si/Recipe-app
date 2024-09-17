@@ -21,10 +21,25 @@ function MealDetails() {
 
     if (!meal) return <p>Loading...</p>;
 
+    const ingredients = [];
+    for (let i = 1; i <= 20; i++) {
+        const ingredient = meal[`strIngredient${i}`];
+        const measure = meal[`strMeasure${i}`];
+        if (ingredient) {
+            ingredients.push(`${ingredient} - ${measure}`);
+        }
+    }
+
     return (
-        <div>
+        <div className='recipe-detail'>
             <h1>{meal.strMeal}</h1>
             <img src={meal.strMealThumb} alt={meal.strMeal} />
+            <h2>Ingredients</h2>
+            <ul>
+                {ingredients.map((ingredient, index) => (
+                    <li key={index}>{ingredient}</li>
+                ))}
+            </ul>
             <h2>Instructions</h2>
             <p>{meal.strInstructions}</p>
         </div>
