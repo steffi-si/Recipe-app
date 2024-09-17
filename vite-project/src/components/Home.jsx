@@ -1,18 +1,35 @@
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import  { ThemeContext } from '../context/ThemeContext';
-import recipes from '../data/recipes';
+import { fetchAllRecipes } from '../API.js';
 
 function Home() {
+    const [recipes, setRecipes] = useState([]); 
     const [selectedCategory, setSelectedCategory] = useState('All');
     const { isDarkMode } = useContext(ThemeContext);
 
+  
+    const getRecipes = async (searchTerm = "") => {
+        try {
+            const fetchedRecipes = await fetchAllRecipes(searchTerm); 
+            setRecipes(fetchedRecipes);
+        } catch (error) {
+            console.error('Fehler beim Abrufen der Rezepte:', error);
+        }
+    };
+
+    useEffect(() => {
+        getRecipes(); 
+    }, []);
 
     const handleCategoryChange = (event) => {
         setSelectedCategory(event.target.value);
-    }
+    };
 
-    const filteredRecipes = selectedCategory === 'All' ? recipes : recipes.filter(recipe => recipe.category === selectedCategory);
+    
+    const filteredRecipes = selectedCategory === 'All' 
+        ? recipes 
+        : recipes.filter(recipe => recipe.strCategory === selectedCategory);
 
     return (
         <div className={`home ${isDarkMode ? 'dark' : ''}`}>
@@ -28,13 +45,17 @@ function Home() {
                 <option value="Dessert">Dessert</option>
             </select>
             <div className="recipes">
-                {filteredRecipes.map(recipe => (
-                    <div key={recipe.id} className="recipe">
-                        <img src={recipe.image} alt={recipe.name} />
-                        <h3>{recipe.name}</h3>
-                        <Link to={`/recipe/${recipe.id}`}>View Recipe</Link>
-                    </div>
-                ))}
+                {filteredRecipes.length > 0 ? (
+                    filteredRecipes.map(recipe => (
+                        <div key={recipe.idMeal} className="recipe">
+                            <img src={recipe.strMealThumb} alt={recipe.strMeal} />
+                            <h3>{recipe.strMeal}</h3>
+                            <Link to={`/recipe/${recipe.idMeal}`}>View Recipe</Link>
+                        </div>
+                    ))
+                ) : (
+                    <p>No recipes found.</p> // 
+                )}
             </div>
         </div>
     );

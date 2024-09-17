@@ -1,33 +1,40 @@
-import React from 'react';
 import { useParams } from 'react-router-dom';
-import recipes from '../data/recipes';
-import { Link } from 'react-router-dom';
+import { fetchAllRecipes } from '../API.js';
+import { useEffect, useState } from 'react';
 
-function Search() {
-    const { term } = useParams(); // Den Suchbegriff aus den URL-Parametern abrufen
-    const filteredRecipes = recipes.filter(recipe =>
-        recipe.name.toLowerCase().includes(term.toLowerCase()) // Suche nach Rezeptnamen
-    );
+function Search () {
+    const { term } = useParams();
+   const [recipes, setRecipes] = useState([]);
 
-    return (
+   useEffect(() => {
+    const getRecipes = async () => {
+        try {
+            const fetchedRecipes = await fetchAllRecipes(term);
+            setRecipes(fetchedRecipes);
+        } catch (error) {
+            console.error('getRecipes error: ', error);
+        }
+    };
+    getRecipes();
+   }, [term]);
+
+    return(
         <div>
-            <h1>Search results</h1>
-            <div className="recipes">
-                {filteredRecipes.length > 0 ? (
-                    filteredRecipes.map(recipe => (
-                        <div key={recipe.id} className="recipe">
-                            <Link to={`/recipe/${recipe.id}`}> 
-                                <img src={recipe.image} alt={recipe.name} />
-                                <h3>{recipe.name}</h3>
-                                <p>{recipe.category}</p>
-                            </Link>
-                        </div>
-                    ))
-                ) : (
-                    <p>No recipes found.</p>
-                )}
-            </div>
-        </div>
+        <h2>Ergebnisse für "{term}"</h2>
+        <ul>
+          {recipes && recipes.length > 0 ? (
+            recipes.map((recipe) => (
+              <li key={recipe.idMeal}>
+                <h3>{recipe.strMeal}</h3>
+                <img src={recipe.strMealThumb} alt={recipe.strMeal} />
+              </li>
+            ))
+          ) : (
+            <p>Keine Rezepte gefunden.</p>
+          )}
+        </ul>
+      </div>
     );
-}
+  };
+
 export default Search;
