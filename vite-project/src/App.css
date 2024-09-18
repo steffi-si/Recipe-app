@@ -321,9 +321,9 @@ body.light-mode .surprise-me-button:hover {
   border-radius: 50%;
   transition: left 4s;
 }
-input.checked .slider {
+input.checked + .slider {
   background-color: #2196f3;
 }
-input:checked .slider:before {
+input:checked + .slider:before {
   transform: translateX(26px);
 }

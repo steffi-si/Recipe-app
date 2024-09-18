@@ -32,8 +32,8 @@ function SearchByName() {
                     meals.map(meal => (
                         <div className='recipe-detail' key={meal.idMeal}>
                             <div className='recipe-card'>
-                                <h3>{meal.strMeal}</h3>
                                 <img src={meal.strMealThumb} alt={meal.strMeal} />
+                                <h3>{meal.strMeal}</h3>
                                 <Link className='link-design' to={`/meal/${meal.idMeal}`}>View Recipe</Link>
                             </div>
                         </div>
