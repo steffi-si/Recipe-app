@@ -27,14 +27,14 @@ function SearchByName() {
                 />
                 <button className='search-button' type="submit">Search</button>
             </form>
-            <div>
+            <div className='search-results'>
                 {meals.length > 0 ? (
                     meals.map(meal => (
                         <div className='recipe-detail' key={meal.idMeal}>
                             <div className='recipe-card'>
                                 <h3>{meal.strMeal}</h3>
                                 <img src={meal.strMealThumb} alt={meal.strMeal} />
-                                <Link to={`/meal/${meal.idMeal}`}>Details</Link>
+                                <Link className='link-design' to={`/meal/${meal.idMeal}`}>View Recipe</Link>
                             </div>
                         </div>
                     ))
