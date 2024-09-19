@@ -210,8 +210,10 @@ button {
 }
 /* SearchByName-Komponente */
 .search-form {
-  position: relative;
-  justify-content: flex-start;
+  /* position: relative; */
+  /* justify-content: flex-start; */
+  margin-left: auto;
+  margin-right: auto;
   margin-bottom: 20px;
   width: 700px;
   margin-top: 20px;
