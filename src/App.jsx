@@ -1,12 +1,14 @@
 import Home from "./components/Home";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import { ThemeProvider } from "./context/ThemeContext";
 import MealDetails from "./components/MealDetails.jsx";
 import SearchByName from "./components/SearchByName.jsx";
 import "./App.css";
-import DarkModeToggle from "./components/DarkModeToggle.jsx";
+import Header from "./components/Header.jsx";
 
 function App() {
+  const navigate = useNavigate();
+
   const getRandomRecipe = async () => {
     try {
       const response = await fetch(
@@ -14,8 +16,7 @@ function App() {
       );
       const data = await response.json();
       if (data.meals) {
-        // Navigiere zur Detailseite des zufälligen Rezepts
-        window.location.href = `/meal/${data.meals[0].idMeal}`;
+        navigate(`/meal/${data.meals[0].idMeal}`);
       }
     } catch (error) {
       console.error("Fehler beim Abrufen eines zufälligen Rezepts:", error);
@@ -24,26 +25,18 @@ function App() {
 
   return (
     <ThemeProvider>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/search">Search Meals</Link>
-          </li>
-        </ul>
-        <DarkModeToggle />
-      </nav>
+      <Header />
 
       <button onClick={getRandomRecipe} className="surprise-me-button">
         Surprise Me!
       </button>
 
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/meal/:id" element={<MealDetails />} />
-        <Route path="/search" element={<SearchByName />} />
+        <Route path="/">
+          <Route index element={<Home />} />
+          <Route path="/meal/:id" element={<MealDetails />} />
+          <Route path="/search" element={<SearchByName />} />
+        </Route>
       </Routes>
     </ThemeProvider>
   );

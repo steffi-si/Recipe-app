@@ -39,7 +39,7 @@ function SearchByName() {
                         </div>
                     ))
                 ) : (
-                    <p>No meals found.</p>
+                    <p>Search something...</p>
                 )}
             </div>
         </div>

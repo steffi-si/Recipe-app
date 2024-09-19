@@ -33,6 +33,9 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: fixed;
+  top: 10px;
+  width: 1250px;
 }
 nav a {
   color: white;
@@ -210,8 +213,6 @@ button {
 }
 /* SearchByName-Komponente */
 .search-form {
-  /* position: relative; */
-  /* justify-content: flex-start; */
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 20px;
