@@ -15,7 +15,7 @@ body {
 }
 /* Lichtmodus */
 body.light-mode {
-  background-image: url("/src/images/LightModePlanB.jpg");
+  background-image: url("/src/images/LightModeBackground.png");
   color: #333; /* Dunkle Textfarbe für Lichtmodus */
 }
 /* Dunkelmodus */
