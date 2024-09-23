@@ -4,15 +4,28 @@ import { Link } from 'react-router-dom';
 function SearchByName() {
     const [query, setQuery] = useState('');
     const [meals, setMeals] = useState([]);
+    const [errorMessage, setErrorMessage] = useState('');
 
     const handleSearch = async (e) => {
         e.preventDefault();
+        setErrorMessage('');
+
+        if (!query.trim()) {
+            setErrorMessage('Please enter a valid search term.');
+            setMeals([]);
+            return;
+        }
+
         try {
             const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${query}`);
             const data = await response.json();
             setMeals(data.meals || []);
+            if (!data.meals) {
+                setErrorMessage('No meals found. Try a different search term.');
+            }
         } catch (error) {
             console.error('handleSearch error: ', error);
+            setErrorMessage('An error occurred while searching. Please try again.');
         }
     };
 
@@ -28,6 +41,7 @@ function SearchByName() {
                 <button className='search-button' type="submit">Search</button>
             </form>
             <div className='search-results'>
+                {errorMessage && <p className="error-message">{errorMessage}</p>}
                 {meals.length > 0 ? (
                     meals.map(meal => (
                         <div className='recipe-detail' key={meal.idMeal}>
@@ -39,7 +53,7 @@ function SearchByName() {
                         </div>
                     ))
                 ) : (
-                    <p>Search something...</p>
+                    !errorMessage && <p>Search for a meal...</p>
                 )}
             </div>
         </div>
