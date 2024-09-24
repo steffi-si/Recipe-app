@@ -7,6 +7,10 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
+# Made By Stefanie Sieg
+# Year /2024 Sept.
+# Image Quelle : Pinterest Copyright ©
+
 # Rezept-App
 Eine einfache Rezept-App, die es Benutzern ermöglicht, Rezepte zu durchsuchen, Details zu einzelnen Rezepten anzuzeigen und zufällige Rezepte zu entdecken.
 ## Funktionen
