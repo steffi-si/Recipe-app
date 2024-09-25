@@ -8,8 +8,10 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
 # Made By Stefanie Sieg
-# Year /2024 Sept.
-# Image Quelle : Pinterest Copyright ©
+# Year 2024/09
+# Images from: Pinterest Copyright ©
+
+## [Try out] (https://steffi-si.github.io/Recipe-app/)
 
 # Rezept-App
 Eine einfache Rezept-App, die es Benutzern ermöglicht, Rezepte zu durchsuchen, Details zu einzelnen Rezepten anzuzeigen und zufällige Rezepte zu entdecken.
